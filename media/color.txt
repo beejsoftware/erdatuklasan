@@ -1,0 +1,3 @@
+The blue cirles: 00b0f1
+
+with hover: 0022f1

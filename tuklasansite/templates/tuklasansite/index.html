@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en">
+
+<head>
+    <title>Erda Tuklasan</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="description" content="We are s streetchildren center based in San Juan, Metro Manila, Philippines " />
+	 <meta name="keywords" content="Erda, Streetchildren, Orphanage, NGO, charity, San Juan, Manila, Philippines"/>
+    <link href="{{ STATIC_URL }}css/base.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/720_grid.css" type="text/css" media="screen and (min-width: 720px)">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/986_grid.css" type="text/css" media="screen and (min-width: 986px)">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/1236_grid.css" media="screen and (min-width: 1236px)" >
+</head>
+
+
+
+<body>
+
+<div class="banner-wrap" style="background-color: #D6EBFF; background-image: url({{STATIC_URL}}kids.png),url({{STATIC_URL}}kids2.png);background-size: contain;background-repeat:no-repeat; background-position: left, right; ">
+
+
+	<div class="row" style="overflow:hidden; clear: both; padding-top: 1%; ">
+	
+
+		
+		<div style="float: left;width: 35%;">
+			
+			<a href="/" title="Erda tuklasan" target="_blank">
+			<img class = "option" src="{{ STATIC_URL }}tuklasanlogo.png" style="float: right;width: 30%; padding-right: 10%;"> </a>
+		</div>	
+		<div style="float: left; width: 30%">
+			<img class = "option" src="{{ STATIC_URL }}title.jpg" style="max-width: 100%; padding-top: 10%;"> </a>
+		<!--
+			<h1 id="logo" style="margins: 0;"> Erda <span style="color: red;">Tuklasan </span></h1>-->
+			<p class="intro" style="font-size: 1.5em;"> Center for Street Children </p>
+				
+		</div>	
+		<div style="float: right; width: 35%">
+			<a href="http://erdafoundation.wordpress.com/" title="Erda foundation website" target="_blank">
+			<img class="option" src="{{ STATIC_URL }}erda_logo.png" style="float: left; width: 30%; padding-left: 10%"></a>
+		</div>		
+		
+	
+	
+	</div>
+	
+
+
+</div>
+
+
+<div class="grid" >
+
+	<div class="row">
+	
+		<div class="slot-6 feature">
+			<a href="/tuklas/about"><img class="option" src="{{ STATIC_URL }}option.png" alt="About us" style="width:50%;"></a>
+		
+		</div>
+		<div class="slot-7 feature">
+			<a href="/tuklas/programs"><img class="option" src="{{ STATIC_URL }}programs.png" style="width:50%;"></a>
+		
+		</div>
+		<div class="slot-8 feature">
+			<img class="option" src="{{ STATIC_URL }}newsletter.png" style="width:50%;">
+		
+		</div>
+		<div class="slot-9 feature">
+			<img class="option" src="{{ STATIC_URL }}contribute.png" alt="About us" style="width:50%;">
+		
+		</div>		
+
+	</div>
+
+	
+
+	<div class="row">
+	
+		<div class="slot-0-1 feature">
+		In 1991, the Educational Research and Development Assistance (ERDA) Foundation, Incorporated came up with a special project for streetchildren, the Tuklas (discovery), Kalinga (care), Laruan (play), Aralan (study) at Sanayan (training) TuKLASan Center. Its primary aim is to provide care, protective, rehabilitative and preventive programs and services that will respond to the problems concerning streetchildren. With the downpour of responses to ERDA's call in helping TuKLASan Center, its new building was constructed in San Juan, Metro Manila and was named the Ma. Elena Yuchengco House (MEYH).
+		</div>
+		<div class="slot-2-3 feature">
+		
+		MEYH serves as a temporary shelter for streetchildren (particularly boys) ages 17 and below. It can accommodate a minimum of 25 to a maximum of 50 children for a period of time. The children are allowed to stay in the center for six months to two years. It targets to house 100 to 150 children each year. Open 24 hours a day, TuKLASan accepts children who go to the center on their own, or through referrals from other institutions. This special project of ERDA was anchored to the Philippine Program for Streetchildren.	
+		</div>
+		
+		<div class="slot-4-5 feature">
+		Contact Us <br>
+		# 265 B - Ibuna St., Brgy. Little Baguio, San Juan City, Tel. Nos.: (02) 722-8330 <br>
+		Map<br>
+	
+	
+	
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false">
+	
+	
+		</script><div style="overflow:hidden;height:250px;width:100%;">
+			
+		<div id="gmap_canvas" style="height:250px;width:100%;"></div>
+			
+		<script type="text/javascript"> 
+			
+		function init_map(){var myOptions = {zoom:16,center:new google.maps.LatLng(14.603518,121.034161),mapTypeId: google.maps.MapTypeId.ROADMAP, 
+		styles: [{stylers:[{hue:'#2c3e50'},{saturation:250}]},{featureType:'road',elementType:'geometry',stylers:[{lightness:50},{visibility:'simplified'}]},{featureType:'road',elementType:'labels',stylers:[{visibility:'on'}]}]
+		};
+		map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);
+		marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(14.603518,121.034161)});
+		infowindow = new google.maps.InfoWindow({content:"<div style='position:relative;line-height:1.34;overflow:hidden;white-space:nowrap;display:block;'><div style='margin-bottom:2px;font-weight:500;'>Erda Tuklasan</div><span>Brgy Little Baguio <br>  San Juan</span></div>" });
+		google.maps.event.addListener(marker, "click", function(){infowindow.open(map,marker);});
+		infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);
+			
+		</script>
+		 <!-- 
+           For this map, used code from http://www.embed-google-map.com/ and styling from snazzy map (
+        -->
+
+		
+		
+		
+		</div>
+	</div>
+	
+	
+
+	<hr>
+</div>
+	
+
+	
+
+
+</body>
+</html>
