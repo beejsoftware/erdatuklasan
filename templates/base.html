@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+{% load media cms blog google_cse google_analytics %}
+<html dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}"
+      lang="{% firstof LANGUAGE_CODE 'en' %}">
+
+<head>
+    <title>Erda Tuklasan</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="description" content="Streetchildren" />
+	 <meta name="keywords" content="Erda, Streetchildren, Orphanage, NGO, charity, San Juan, Manila, Philippines"/>
+
+
+    {% block extra-head %}{% endblock %}
+    <link href="{{ STATIC_URL }}css/base.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/720_grid.css" type="text/css" media="screen and (min-width: 720px)">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/986_grid.css" type="text/css" media="screen and (min-width: 986px)">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/1236_grid.css" media="screen and (min-width: 1236px)" >
+</head>
+	{% block css %}
+      {% include_media 'main.css' %}
+    {% endblock %}
+
+  <body>
+<div class="banner-wrap" style="background-color: #D6EBFF; background-image: url(/static/kids.png),url(/static/kids2.png);background-size: contain;background-repeat:no-repeat; background-position: left, right; ">
+
+
+
+	<div class="row" style="overflow:hidden; clear: both; padding-top: 1%;">
+	
+
+		<div style="float: left;width: 35%">
+			
+			<a href="/" title="Erda tuklasan" target="_blank">
+			<img class = "option" src="{{ STATIC_URL }}tuklasanlogo.png" style="float: right;width: 30%; padding-right: 10%;">  </a>
+		</div>	
+		<div style="float: left; width: 30%">
+			<img class = "option" src="{{ STATIC_URL }}title.jpg" style="max-width: 100%; padding-top: 10%;"> </a>
+		<!--	
+			<h1 id="logo" style="margins: 0;"> Erda <span style="color: red;">Tuklasan </span></h1>-->
+
+			<p class="intro" style="font-size: 1.5em;"> Center for Street Children </p>
+				
+		</div>	
+		<div style="float: right; width: 35%">
+			<a href="http://erdafoundation.wordpress.com/" title="Erda foundation website" target="_blank">
+			<img class="option" src="{{ STATIC_URL }}erda_logo.png" style="float: left; width: 30%; padding-left: 10%"></a>
+		</div>		
+		
+	
+	
+	</div>
+	
+
+
+</div>
+    <div class="columns">
+      <div id="content" class="column">
+        {% block content-header %}
+          {% if error %}<div class="error">{{ error }}</div>{% endif %}
+          {% if info %}<div class="info">{{ info }}</div>{% endif %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="info">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endblock %}
+
+        <div id="cse" style="width:100%; display:inline;"></div>
+
+        {% block content %}{% endblock %}
+      </div>
+
+      <div id="sidebar" class="column">
+        {% block sidebar %}
+          {% show_block 'sidebar' %}
+        {% endblock %}
+      </div>
+    </div>
+
+    <div id="footer">
+      <p>
+        Copyright {% now "Y" %} {{ site_copyright }}<br />
+        Powered by <a href="http://www.allbuttonspressed.com/projects/django-nonrel">Django-nonrel</a>,
+        <a href="http://code.google.com/appengine/">App Engine</a>, and
+        <a href="http://www.allbuttonspressed.com/projects/allbuttonspressed">All Buttons Pressed</a>
+      </p>
+    </div>
+
+    {% block js %}
+    {% endblock %}
+  </body>
+</html>

@@ -23,5 +23,5 @@ def about(request):
 
 
 def programs(request):
-    return render_to_response('tuklasansite/program.html', context_instance=RequestContext(request))
+    return render_to_response('tuklasansite/base.html', context_instance=RequestContext(request))
 
