@@ -138,14 +138,13 @@ hr {
 .banner-wrap {
 	text-align: center;
 	background: #FFF;
-	border-bottom: 1px solid #ccc;
-	padding: 0 10px 1em;
+	border-bottom: 2px solid #dcc;
 	margin-bottom: 1em;
 }
 
 .intro {
 	font-size: 1.75em;
-	font-family: sommet-slab-1, sommet-slab-2, Georgia, serif;
+	font-family: Arial, sommet-slab-1, sommet-slab-2, Georgia, serif;
 	line-height: 1.1em;
 	max-width: none;
 }

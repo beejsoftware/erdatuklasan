@@ -17,38 +17,45 @@
 
 <body>
 
+<div class="banner-wrap" style="background-color: #D6EBFF;">
+
+	<div class="row" style="padding-top: 1%; display: inline-block;">
+	
+		<div class="slot-0-1 feature" >
+			<a href="/"><img class = "option" src="{{ STATIC_URL }}title.jpg" style="max-width: 85%; padding-top: 1%;"> </a>
+			<p class="intro" style="font-size: 1em;"> Center for Street Children </p>
+		</div>
+		<div class="slot-2 feature">
+			<a href="/tuklas/about"><img class="option" src="{{ STATIC_URL }}option.png" style="max-width:50%;"></a>
+		
+		</div>
+		
+		<div class="slot-3 feature">
+			<a href="/tuklas/programs"><img class="option" src="{{ STATIC_URL }}programs.png" style="max-width:50%;"></a>
+		
+		</div>
+		<div class="slot-4 feature">
+			<img class="option" src="{{ STATIC_URL }}newsletter.png" alt="About us" style="max-width:50%;">
+		
+		</div>	
+		<div class="slot-5 feature">
+			<img class="option" src="{{ STATIC_URL }}contribute.png" alt="About us" style="max-width:50%;">
+		
+		</div>			
+	</div>
+
+
+</div>
+
 
 
 <div class="grid" >
 
-	<div class="row">
-	
-		<div class="slot-6 feature">
-			<a href="/"><img class="option" src="{{ STATIC_URL }}tuklasanlogo.jpg" alt="About us" style="width:50%;"></a>
-		
-		</div>
-		<div class="slot-7 feature">
-			<a href="/tuklas/about"><img class="option" src="{{ STATIC_URL }}option.png" style="width:50%;"></a>
-		
-		</div>
-		<div class="slot-8 feature">
-			<img class="option" src="{{ STATIC_URL }}newsletter.png" style="width:50%;">
-		
-		</div>
-		<div class="slot-9 feature">
-			<img class="option" src="{{ STATIC_URL }}contribute.png" alt="About us" style="width:50%;">
-		
-		</div>	
-		
-	</div>
-	
-	
-	<div class="row">
-	
-		<h1> Programs </h1>
-	
-	</div>
-	
+{% block content %}
+
+
+
+{% endblock %}
 
 
 
