@@ -1,5 +1,5 @@
-application: erdatuklasan
-version: 1
+application: rapsysample
+version: 13
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -22,16 +22,22 @@ handlers:
 - url: /_ah/stats/.*
   script: djangoappengine.appstats.application
 
+- url: /blank.html
+  static_files: blank.html
+  upload: blank.html
+
 - url: /static/admin
   static_dir: django/contrib/admin/static/admin
   expiration: '0'
   
-- url: /media/admin
-  static_dir: django/contrib/admin/media
-  expiration: '0'
-  
 - url: /static
-  static_dir: media  #my static folder is in the root of the project
-  
+  static_dir: tuklasansite/static
+  expiration: '0'
+
+
+- url: /media
+  static_dir: _generated_media/
+  expiration: '365d'
+
 - url: /.*
   script: djangoappengine.main.application

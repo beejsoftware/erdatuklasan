@@ -1,0 +1,44 @@
+{% extends 'blog/base.html' %}
+{% load disqus_tags media simplesocial %}
+{% block title %}{{ post.title }} - {{ block.super }}{% endblock %}
+
+{% block extra-head %}
+{{ block.super }}
+<meta name="description" content="{{ post.rendered_content|striptags|truncatewords:20 }}" />
+{% if review %}
+<meta name="robots" content="noindex, noarchive" />
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="post post-detail">
+{% if review %}
+<div class="info"><strong>Review mode: Don't tweet this!!!</strong></div>
+{% endif %}
+{% include 'blog/post.html' %}
+
+<div class="addthis_toolbox addthis_default_style ">
+
+<a class="addthis_counter addthis_pill_style"></a>
+</div>
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-532803347a647f6b"></script>
+<div>
+<p> </p>
+</div>
+<div class="post-footer">
+{% block post-footer %}
+By {{ post.author.get_full_name }} on {{ post.published_on|date }}
+|
+<a href="{{ blog.get_absolute_url }}">Browse all posts &raquo;</a>
+{% endblock %}
+</div>
+
+{% disqus_num_replies %}
+{% disqus_show_comments %}
+
+<div class="finished-reading">
+<strong>Finished reading?</strong> <a href="{{ blog.get_absolute_url }}">Browse all posts &raquo;</a>
+</div>
+</div>
+{% endblock %}

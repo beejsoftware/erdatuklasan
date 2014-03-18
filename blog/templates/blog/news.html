@@ -1,0 +1,21 @@
+
+
+{% load filetransfers %}
+{% for e in events %}
+{% url newsletters.views.download_handler pk=e.pk as fallback_url %}
+{% url newsletters.views.download_handler2 pk=e.pk as fallback_url2 %}
+<ul{% if recent_posts_class %} class="{{ recent_posts_class }}"{% endif %}>
+<li>
+<h3>{{e.title}}</h3>
+<div class= "news_date">{{ e.date|date:"F j, Y" }}</div>
+<div><a href ="{% firstof e.file|public_download_url fallback_url2 %}"  type="application/pdf">
+<img src="{{e.image.url}}" width="80" height="80" alt= {{e.title}}></a></div>
+
+<a class= "news_title" href="{%  firstof e.file|public_download_url fallback_url %}">Download PDF</a>
+
+
+</li>
+
+{% endfor %}
+
+</ul>

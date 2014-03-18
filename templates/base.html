@@ -1,0 +1,103 @@
+
+{% load media cms blog google_cse google_analytics %}
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en">
+
+<head>
+    <title>Erda Tuklasan</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="description" content="Streetchildren" />
+	 <meta name="keywords" content="Erda, Streetchildren, Orphanage, NGO, charity, San Juan, Manila, Philippines"/>
+    <link href="{{ STATIC_URL }}css/base.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/720_grid.css" type="text/css" media="screen and (min-width: 720px)">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/986_grid.css" type="text/css" media="screen and (min-width: 986px)">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/1236_grid.css" media="screen and (min-width: 1236px)" >
+</head>
+    {% block blogfeeds %}
+      {% blog_feeds %}
+    {% endblock %}
+    {% block css %}
+      {% include_media 'main.css' %}
+    {% endblock %}
+
+    {% block preload_js %}
+      {% google_analytics_code %}
+    {% endblock %}
+
+    {% block extra-head %}{% endblock %}
+  <body>
+<div class="banner-wrap" style="background-color: #D6EBFF;">
+
+	<div class="row" style="padding-top: 1%; display: inline-block;">
+	
+		<div class="slot-0-1 feature" >
+			<a href="/"><img class = "option" src="{{ STATIC_URL }}title.jpg" style="max-width: 85%; padding-top: 1%;"> </a>
+			<p class="intro" style="font-size: 1em;"> Center for Street Children </p>
+		</div>
+		<div class="slot-2 feature">
+			<a href="/tuklas/about"><img class="option" src="{{ STATIC_URL }}option.png" style="max-width:50%;"></a>
+		
+		</div>
+		
+		<div class="slot-3 feature">
+			<a href="/tuklas/programs"><img class="option" src="{{ STATIC_URL }}programs.png" style="max-width:50%;"></a>
+		
+		</div>
+		<div class="slot-4 feature">
+			<a href="/tuklas/blog"><img class="option" src="{{ STATIC_URL }}newsletter.png" alt="About us" style="max-width:50%;"></a>
+		
+		</div>	
+		<div class="slot-5 feature">
+			<img class="option" src="{{ STATIC_URL }}contribute.png" alt="About us" style="max-width:50%;">
+		
+		</div>			
+
+      </ul>
+	</div>
+
+
+</div>
+    <div class="columns">
+      <div id="content" class="column">
+        {% block content-header %}
+          {% if error %}<div class="error">{{ error }}</div>{% endif %}
+          {% if info %}<div class="info">{{ info }}</div>{% endif %}
+          {% if messages %}
+            {% for message in messages %}
+              <div class="info">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+        {% endblock %}
+
+        <div id="cse" style="width:100%; display:inline;"></div>
+
+        {% block content %}{% endblock %}
+      </div>
+
+      <div id="sidebar" class="column">
+        {% block sidebar %}
+          {% show_block 'sidebar' %}
+        {% endblock %}
+      </div>
+    </div>
+<div id="navigation_up_down_9260"><noscript>Javascript is disable - <a href="http://www.webestools.com/">http://www.webestools.com/</a> - <a href="http://www.webestools.com/navigation-buttons-generator-scroll-top-bottom-shortcut-page-up-down-scroll-buttons-javascript.html">Navigation Buttons Generator</a></noscript><script type="text/javascript" src="http://services.webestools.com/navigation_up_down/1-9260-right.js"></script></div>
+
+    <div class="footer">
+	<div class="row">
+		<div class="slot-0-1-2-3-4-5 feature" >	
+      <p>
+        Copyright {% now "Y" %} {{ site_copyright }}<br />
+        Powered by <a href="http://www.allbuttonspressed.com/projects/django-nonrel">Django-nonrel</a>,
+        <a href="http://code.google.com/appengine/">App Engine</a>, and
+        <a href="http://www.allbuttonspressed.com/projects/allbuttonspressed">All Buttons Pressed</a>
+      </p>
+    </div>
+    </div>
+	</div>
+    {% block js %}
+    {% endblock %}
+  </body>
+</html>

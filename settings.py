@@ -1,105 +1,176 @@
-"""
-Django settings for erdatuklasan project.
+# -*- coding: utf-8 -*-
 
-For more information on this file, see
-https://docs.djangoproject.com/en/1.6/topics/settings/
+# The following takes care of auto-configuring the database. You might want to
+# modify this to match your environment (i.e., without fallbacks).
+try:
+    from djangoappengine.settings_base import *
+    has_djangoappengine = True
+except ImportError:
+    has_djangoappengine = False
+    DEBUG = True
+    TEMPLATE_DEBUG = DEBUG
 
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.6/ref/settings/
-"""
-from djangoappengine.settings_base import *
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+    # Fall back to MongoDB if App Engine isn't used (note that other backends
+    # including SQL should work, too)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django_mongodb_engine',
+            'NAME': 'test',
+            'USER': '',
+            'PASSWORD': '',
+            'HOST': 'localhost',
+            'PORT': 27017,
+        }
+    }
+
 import os
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'adm=!+f@cdexu3bgg&6m9r15hi1cq8+vrt1nzrxzq0ff-8vqw@'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-TEMPLATE_DEBUG = True
-
-ALLOWED_HOSTS = []
 
 # Activate django-dbindexer for the default database
 DATABASES['native'] = DATABASES['default']
 DATABASES['default'] = {'ENGINE': 'dbindexer', 'TARGET': 'native'}
-AUTOLOAD_SITECONF = 'indexes'
-SITE_ID = 1
+AUTOLOAD_SITECONF = 'dbindexes'
 
-# Application definition
+SITE_NAME = 'rapsysample'
+SITE_DESCRIPTION = ''
+SITE_COPYRIGHT = ''
+DISQUS_SHORTNAME = 'rapsysample'
+GOOGLE_ANALYTICS_ID = ''
+# Get the ID from the CSE "Basics" control panel ("Search engine unique ID")
+GOOGLE_CUSTOM_SEARCH_ID = '011892772520349051293:1ucueeji_i8'
+# Set RT username for retweet buttons
+TWITTER_USERNAME = ''
+# In order to always have uniform URLs in retweets and FeedBurner we redirect
+# any access to URLs that are not in ALLOWED_DOMAINS to the first allowed
+# domain. You can have additional domains for testing.
+ALLOWED_DOMAINS = ()
+
+SECRET_KEY = '=r-$b*8hglm+858&9t043hlm6-&6-3d3vfc4((7yd0dbrakhvi'
 
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.contenttypes',
+    'django.contrib.sitemaps',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'urlrouter',
+    'minicms',
+    'blog',
+    'disqus',
     'djangotoolbox',
+    'google_analytics',
+    'google_cse',
+    'mediagenerator',
+    'robots',
+    'simplesocial',
+    'redirects',
     'autoload',
     'dbindexer',
+    'filetransfers',
+    'newsletters',
     'tuklasansite',
-    'djangoappengine',
+
+
+)
+
+if has_djangoappengine:
+    # djangoappengine should come last, so it can override a few manage.py commands
+    INSTALLED_APPS += ('djangoappengine',)
+else:
+    INSTALLED_APPS += ('django_mongodb_engine',)
+
+TEST_RUNNER = 'djangotoolbox.test.CapturingTestSuiteRunner'
+
+REST_BACKENDS = (
+    'minicms.markup_highlight',
+    'blog.markup_posts',
 )
 
 MIDDLEWARE_CLASSES = (
+    # This loads the index definitions, so it has to come first
     'autoload.middleware.AutoloadMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+
+    'mediagenerator.middleware.MediaMiddleware',
+
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    'djangotoolbox.middleware.RedirectMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-
-
-)
-ROOT_URLCONF = 'erdatuklasan.urls'
-
-WSGI_APPLICATION = 'erdatuklasan.wsgi.application'
-
-STATICFILES_DIRS = (
-    "C:/django_projects/erdatuklasan/media",
-    "C:/django_projects/erdatuklasan/media/css/fonts",
-    "C:/django_projects/erdatuklasan/django/contrib/admin/static/admin/css",
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'urlrouter.middleware.URLRouterFallbackMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
 )
 
+URL_ROUTE_HANDLERS = (
+    'minicms.urlroutes.PageRoutes',
+    'blog.urlroutes.BlogRoutes',
+    'blog.urlroutes.BlogPostRoutes',
+    'redirects.urlroutes.RedirectRoutes',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.request',
+    'django.core.context_processors.media',
+    'minicms.context_processors.cms',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.static',
+    'django.contrib.messages.context_processors.messages',
+)
 
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.6/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'Asia/Manila'
-
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = False
-
-# Staticfiles (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.6/howto/static-files/
-MEDIA_ROOT = 'C:/django_projects/erdatuklasan/media/'
-MEDIA_URL = '/mymedia/'
-
+TEST_RUNNER = 'djangotoolbox.test.CapturingTestSuiteRunner'##
 
 STATIC_URL = '/static/'
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.6/howto/static-files/
+MEDIA_URL= '/media/'
 
-STATIC_URL = '/static/'
+
+STATICFILES_FINDERS=(
+	'django.contrib.staticfiles.finders.FileSystemFinder',
+	'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+	
+	)###
+USE_I18N = False
+
+TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), 'templates'),)
+
+MEDIA_BUNDLES = (
+    ('main.css',
+        'design.sass',
+        'rest.css',
+    ),
+)
+
+ROOT_MEDIA_FILTERS = {
+    'js': 'mediagenerator.filters.closure.Closure',
+    'css': 'mediagenerator.filters.yuicompressor.YUICompressor',
+}
+
+CLOSURE_COMPILER_PATH = os.path.join(os.path.dirname(__file__),
+                                     '.webutils', 'compiler.jar')
+
+YUICOMPRESSOR_PATH = os.path.join(os.path.dirname(__file__),
+                                  '.webutils', 'yuicompressor.jar')
+
+MEDIA_DEV_MODE = DEBUG
+DEV_MEDIA_URL = '/devmedia/'
+PRODUCTION_MEDIA_URL = '/media/'
+
+GLOBAL_MEDIA_DIRS = (
+    os.path.join(os.path.dirname(__file__), 'static'),
+)
+
+
+
+
+
+ROOT_URLCONF = 'urls'
+
+NON_REDIRECTED_PATHS = ('/admin/',)
+
+try:
+    from settings_local import *
+except ImportError:
+    pass
