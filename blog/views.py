@@ -27,9 +27,10 @@ def review(request, review_key):
 def show_post(request, post, review=False):
     recent_posts = Post.objects.filter(blog=post.blog, published=True)
     recent_posts = recent_posts.order_by('-published_on')[:6]
+    events = UploadModel.objects.all().order_by("-date")[:6]
     return render(request, 'blog/post_detail.html',
         {'post': post, 'blog': post.blog, 'recent_posts': recent_posts,
-         'review': review})
+         'review': review, 'events': events})
 
 class BrowseView(ListView):
     paginate_by = 8

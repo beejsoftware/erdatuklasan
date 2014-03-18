@@ -11,15 +11,22 @@
 
 {% block content %}
 {% for post in object_list %}
+
   <div class="post post-in-list">
+
+
     {% include 'blog/post.html' %}
     <div class="post-footer">
+	  <div class= "row">
+	  <div class= "slot-1-2-3 feature">
       <a href="{{ post.get_absolute_url }}">Continue &raquo;</a>
       |
       By {{ post.author.get_full_name }} on {{ post.published_on|date }}
       |
       <a href="{{ post.get_absolute_url }}#disqus_thread">Comments</a>
     </div>
+  </div>
+  </div>
   </div>
 {% endfor %}
 

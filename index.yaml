@@ -39,6 +39,19 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
+- kind: auth_user
+  properties:
+  - name: is_active
+  - name: username
+  - name: __key__
+    direction: desc
+
+- kind: auth_user
+  properties:
+  - name: username
+  - name: __key__
+    direction: desc
+
 - kind: blog_blog
   properties:
   - name: url

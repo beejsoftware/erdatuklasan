@@ -4,7 +4,7 @@
 {% for e in events %}
 {% url newsletters.views.download_handler pk=e.pk as fallback_url %}
 {% url newsletters.views.download_handler2 pk=e.pk as fallback_url2 %}
-
+<ul{% if recent_posts_class %} class="{{ recent_posts_class }}"{% endif %}>
 <li>
 <h3>{{e.title}}</h3>
 <div class= "news_date">{{ e.date|date:"F j, Y" }}</div>
@@ -18,3 +18,4 @@
 
 {% endfor %}
 
+</ul>

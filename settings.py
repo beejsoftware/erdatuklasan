@@ -36,7 +36,7 @@ SITE_COPYRIGHT = ''
 DISQUS_SHORTNAME = 'rapsysample'
 GOOGLE_ANALYTICS_ID = ''
 # Get the ID from the CSE "Basics" control panel ("Search engine unique ID")
-GOOGLE_CUSTOM_SEARCH_ID = ''
+GOOGLE_CUSTOM_SEARCH_ID = '011892772520349051293:1ucueeji_i8'
 # Set RT username for retweet buttons
 TWITTER_USERNAME = ''
 # In order to always have uniform URLs in retweets and FeedBurner we redirect
